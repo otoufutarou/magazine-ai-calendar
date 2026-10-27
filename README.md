@@ -20,7 +20,26 @@ npm run build    # TypeScript checks and production assets in dist/
 npm run preview  # Preview the production build locally
 ```
 
-`dist/` can be served by a static web host; no deployment is included.
+`dist/` can be served by a static web host. Relative asset paths support GitHub Pages project URLs as well as root hosting.
+
+## スマホで見る・GitHub Pagesへの公開
+
+公開後は、スマホのSafari・Chromeで次のURLを開くだけで利用できます。
+
+**公開予定URL：https://otoufutarou.github.io/magazine-ai-calendar/**
+
+このURLは公開先の予定であり、設定追加だけでは公開済みになりません。初回はリポジトリ所有者が以下の操作を行ってください。
+
+1. [Settings → Pages](https://github.com/otoufutarou/magazine-ai-calendar/settings/pages)を開き、「Build and deployment」の「Source」を **GitHub Actions** に設定します。
+2. 実装と公開設定を含むPRを `main` にマージします。
+3. [Actions](https://github.com/otoufutarou/magazine-ai-calendar/actions)の **Publish to GitHub Pages** が成功するのを確認します。公開先はジョブの `github-pages` 環境リンクにも表示されます。
+4. スマホで上の公開URLを開きます。アプリのインストールは不要ですが、ジョーク取得にはインターネット接続が必要です。
+
+すでにマージ済みの場合は、Pages有効化後にActionsの **Publish to GitHub Pages → Run workflow → main** で再実行できます。初回公開前や配信失敗時には、予定URLが404になることがあります。
+
+**非公開リポジトリの注意：** 現在このリポジトリは非公開です。非公開リポジトリでのPages利用には対応するGitHubの契約プランが必要です。Pages設定にアップグレードの案内が出る場合、この方法では現在の契約のまま公開できません。無断でリポジトリを公開に変更したり、有料プランを契約したりすることはありません。また、非公開リポジトリから配信してもPagesサイト自体は通常インターネットに公開されます。機密情報は含めないでください。
+
+ワークフローはPRでテスト・lint・ビルドを行い、`main` のみを配信します。追加のAPIキーや手動登録するデプロイ用シークレットは不要です。リポジトリ設定の変更とPRのマージはこの実装には含まれず、配信成功までは公開済みとは扱いません。
 
 ## External API
 
